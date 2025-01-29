@@ -1,0 +1,30 @@
+<script>
+  (function() {
+    // Function to get the value of a specific URL parameter
+    function getURLParam(name) {
+        var urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+
+    // Function to set a cookie with a specific name and value
+    function setCookie(name, value, days) {
+        var d = new Date();
+        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+
+    // Capture UTM parameters and set them as cookies
+    var utmSource = getURLParam('utm_source');
+    var utmMedium = getURLParam('utm_medium');
+    var utmCampaign = getURLParam('utm_campaign');
+    var utmTerm = getURLParam('utm_term');
+    var utmContent = getURLParam('utm_content');
+
+    if (utmSource) setCookie('utm_source', utmSource, 7);
+    if (utmMedium) setCookie('utm_medium', utmMedium, 7);
+    if (utmCampaign) setCookie('utm_campaign', utmCampaign, 7);
+    if (utmTerm) setCookie('utm_term', utmTerm, 7);
+    if (utmContent) setCookie('utm_content', utmContent, 7);
+})();
+</script>
